@@ -1,2 +1,3 @@
 # api-geracao-boleto-itau
-api para registro e geração de boleto itaú.
+
+API DE TRANSMISSÃO AUTOMÁTICA DE REMESSA NO PADRÃO CNAB DE BOLETOS DO BANCO ITAÚ
