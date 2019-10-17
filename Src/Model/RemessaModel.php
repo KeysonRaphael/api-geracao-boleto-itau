@@ -4,6 +4,12 @@ namespace Itau\Model;
 
 class RemessaModel
 {
+
+    //objetos complementares
+    public $sacador;
+    public $beneficiario;
+    public $pagador;
+
     //boleto
     public $tipoAmbiente;
     public $tipoRegistro;
@@ -23,6 +29,7 @@ class RemessaModel
     public $dataLimitePagamento;
     public $indicadorPagamentoParcial;
     public $valorAbatimento;
+    public $usoDaEmpresa;
 
     //moeda
     public $codigoMoedaCnab;

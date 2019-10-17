@@ -7,6 +7,6 @@ class RemessaController
     public function gerarBoleto(array $dadosBoleto)
     {
         $req = new Parametros();
-        $req->validar($dadosBoleto);
+        $remessar = $req->validar($dadosBoleto);
     }
 }

@@ -10,7 +10,7 @@ try {
         //dados boleto
         'titulo_aceite' => 'N',
         'tipo_carteira_titulo' => '109',
-        'nosso_numero' => '00000001',
+        'nosso_numero' => '0000000001',
         'digito_verificador_nosso_numero' => 1,
         'data_vencimento' => '2019-10-05',
         'valor_cobrado' => '00000000000001600',
