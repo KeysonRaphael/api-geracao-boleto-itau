@@ -10,7 +10,8 @@
     }],
     "minimum-stability": "dev",
     "require": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "nesbot/carbon": "dev-master"
     },
     "autoload": {
         "psr-4": {

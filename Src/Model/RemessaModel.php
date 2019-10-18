@@ -30,6 +30,7 @@ class RemessaModel
     public $indicadorPagamentoParcial;
     public $valorAbatimento;
     public $usoDaEmpresa;
+    public $codigoBarras;
 
     //moeda
     public $codigoMoedaCnab;

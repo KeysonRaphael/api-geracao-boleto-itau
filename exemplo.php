@@ -9,10 +9,10 @@ try {
     $dadosBoleto = [
         //dados boleto
         'titulo_aceite' => 'N',
-        'tipo_carteira_titulo' => '109',
-        'nosso_numero' => '0000000001',
+        'tipo_carteira_titulo' => '189',
+        'nosso_numero' => '1100000001',
         'digito_verificador_nosso_numero' => 1,
-        'data_vencimento' => '2019-10-05',
+        'data_vencimento' => '18/10/2019',
         'valor_cobrado' => '00000000000001600',
         'seu_numero' => '000001',
         'especie' => '01',
@@ -79,5 +79,6 @@ try {
     echo ($remessaController->gerarBoleto($dadosBoleto));
 
 } catch (Exception $e) {
-    echo 'Falha ao iniciar o serviço.';
+    echo $e;
+    //echo 'Falha ao iniciar o serviço.';
 }

@@ -4,6 +4,7 @@ use Itau\Model\BeneficiarioModel;
 use Itau\Model\PagadorModel;
 use Itau\Model\RemessaModel;
 use Itau\Model\SacadorModel;
+use Carbon\Carbon;
 
 class Parametros
 {
@@ -25,6 +26,8 @@ class Parametros
         $this->tituloAceite($dados['titulo_aceite']);
         $this->tipoCarteiraTitulo($dados['tipo_carteira_titulo']);
         $this->nossoNumero($dados['nosso_numero']);
+        $this->digitoVerificadorNossoNumero($dados['digito_verificador_nosso_numero']);
+        $this->dataVencimento($dados['data_vencimento']);
 
         $this->remessa->sacador = $this->sacador;
         $this->remessa->beneficiario = $this->beneficiario;
@@ -82,16 +85,46 @@ class Parametros
             $this->remessa->tipoCarteiraTitulo == 196 ||
             $this->remessa->tipoCarteiraTitulo == 198
         ) {
-
+            $tamanho = strlen($nossoNumero);
+            $this->remessa->nossoNumero = substr($nossoNumero, 0, 8);
+            $exedente = substr($nossoNumero, 8, $tamanho);
+            $this->remessa->seuNumero = $exedente . $this->remessa->seuNumero;
+ 
+            //gerar codigo de barras
+            //Para carteiras com nosso número adicional sempre enviar o código de barras. 
+            $this->remessa->codigoBarras = true;
         }
 
         //Enviar valor do nosso número no campo uso da empresa.
         $this->remessa->usoDaEmpresa = null;
         if ($this->remessa->tipoCarteiraTitulo == 133) {
             $this->remessa->usoDaEmpresa = $nossoNumero;
+
+            //gerar codigo de barras//gerar codigo de barras
+            //Para carteiras com nosso número adicional sempre enviar o código de barras. 
+            $this->remessa->codigoBarras = true;
         }
 
         $this->remessa->nossoNumero = $nossoNumero;
+    }
+
+    private function digitoVerificadorNossoNumero(string $digitoVerificadorNossoNumero)
+    {
+        if (!isset($digitoVerificadorNossoNumero)) {
+            echo \json_encode(["status" => "false", "mensagem" => "Digito verificador do nosso número derá ser informado"], JSON_UNESCAPED_UNICODE);
+        }
+
+        $this->remessa->digitoVerificadorNossoNumero = $digitoVerificadorNossoNumero;
+    }
+
+    private function dataVencimento(string $dataVencimento)
+    {
+        
+        if (!empty($dataVencimento)) {
+        
+            $this->remessa->dataVencimento =  $dataVencimento;
+
+        }
     }
 
 }
